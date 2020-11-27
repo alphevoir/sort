@@ -98,6 +98,7 @@ static void bench(const char* name, sorter *sorter,
             printf("%serror%s\n", RED, RESET);
             // printf("%sReceived:%s \n", BOLD, RESET);
             // print_array("\t", copy, n);
+            free(copy);
             return;
         }
     }
