@@ -144,9 +144,9 @@ static void shuffle(unsigned int *array, const size_t n) {
 
 // show
 static void print_time(const unsigned int s, const unsigned int ns) {
-    static unsigned int divisions[] = {1000, 1000, 1000, 60};
-    static char *units[] = {"ns", "\u00B5s", "ms", "s"};
-    static size_t divisions_n = 4;
+    static const unsigned int divisions[] = {1000, 1000, 1000, 60};
+    static const char *units[] = {"ns", "\u00B5s", "ms", "s"};
+    static const size_t divisions_n = 4;
     unsigned int ts = (unsigned int) s, tns = (unsigned int) ns;
 
     // hmmmmmm :thinking:
