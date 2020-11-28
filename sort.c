@@ -81,8 +81,9 @@ static void bench(const char* name, sorter *sorter,
 
     struct timespec start, end;
 
-    clock_gettime(CLOCK_MONOTONIC_RAW, &start);
-    sorter(copy, n);
+    // sequence these
+    clock_gettime(CLOCK_MONOTONIC_RAW, &start),
+    sorter(copy, n),
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 
     size_t len = strlen(name);
@@ -151,16 +152,16 @@ static void print_time(const unsigned int s, const unsigned int ns) {
 
     // hmmmmmm :thinking:
     unsigned int *parts;
-    parts = (unsigned int *) malloc(divisions_n * sizeof(*parts));
+    parts = (unsigned int *) calloc(divisions_n, sizeof(*parts));
     assert(parts != NULL);
 
     for (size_t i = 0; i < divisions_n; i++) {
-        parts[i] = i != divisions_n - 1 ? tns % divisions[i] : tns;
+        parts[i] += i != divisions_n - 1 ? tns % divisions[i] : tns;
         tns /= divisions[i];
     }
 
     for (size_t i = 3; i < divisions_n; i++) {
-        parts[i] = i != divisions_n -1 ? ts % divisions[i] : ts;
+        parts[i] += i != divisions_n - 1 ? ts % divisions[i] : ts;
         ts /= divisions[i];
     }
 

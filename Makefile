@@ -5,7 +5,7 @@
 # @version 0.1
 
 CC      := gcc
-CCFLAGS := -Wall
+CCFLAGS := -Wall -O2
 LDFLAGS :=
 
 TARGETS := sort
